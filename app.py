@@ -9,7 +9,6 @@ from io import StringIO
 import nltk
 import requests
 import streamlit as st
-from rake_nltk import Rake
 from nltk.tokenize import TreebankWordTokenizer as twt
 from nltk.util import ngrams
 from nltk.stem.wordnet import WordNetLemmatizer
