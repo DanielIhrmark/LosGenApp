@@ -174,7 +174,7 @@ def ngram_analyzer(my_text, num):
 
 
 # pre-load nltk packages
-nltk_download("punkt", "averaged_perceptron_tagger", "universal_tagset", "stopwords", WordNetLemmatizer)
+nltk_download("punkt", "averaged_perceptron_tagger", "universal_tagset", "stopwords", "WordNetLemmatizer")
 
 
 def main():
