@@ -190,7 +190,7 @@ def main():
 		st.title("LNU LosGen Web")
 		st.subheader("Online interface for the Lost Generation corpus")
 		st.subheader("About the App")
-		st.info("This is a basic interface intended to help people easily explore the Lost Generation corpus. Each of the tabs will take you to an interesting corpus stylistic method to apply to your selection of texts from the current corpus.")
+		st.info("This is a basic interface intended to help people easily explore the Lost Generation corpus. Each of the tabs contain an interesting way to explore your selection of texts from the current corpus.")
 		st.subheader("Contact and further access to the corpus")
 		st.text("Daniel Ihrmark")
 		st.text("(daniel.o.sundberg@lnu.se)")
