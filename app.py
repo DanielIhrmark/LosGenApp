@@ -252,7 +252,7 @@ def main():
 	with tab3:
 		st.subheader("N-grams")
 		st.info("'We should know a word by the company it keeps' is one of those quotes every linguistics student will hear from a lecturer at least once during their studies. The reason for this is that the context of a word is very important for formulating our understanding of it. From a corpus linguistics perspective we can look for words that often appear together in text in order to get an idea of the word groups in our specific text.")
-		st.info("N-grams are simply groups of words defined by the number of words included. This tool allows us to look for bigrams (2 words), trigrams (3 words), and quadgrams(4 words).")
+		st.info("N-grams are simply groups of words defined by the number of words included. This tool allows us to look for N-grams, and N-grams containing a specific term.")
 		
 		selection = filter_dataframe("!", losgen)
 		showSelection = selection.drop('text', axis=1)
@@ -271,8 +271,8 @@ def main():
 			results = ngram_analyzer(data, number)
 			freqResults = nltk.FreqDist(results)
 			resultsDF = pd.DataFrame(list(freqResults.items()), columns = ["N-gram","Frequency"])
-			resultsDF[resultsDF['N-gram'].str.contains(ngramWord)]
-			st.dataframe(resultsDF.sort_values(by=["Frequency"],ascending=False))
+			resultsDF2 = resultsDF[resultsDF['N-gram'].str.contains(ngramWord)]
+			st.dataframe(resultsDF2.sort_values(by=["Frequency"],ascending=False))
 
 
 if __name__ == '__main__':
