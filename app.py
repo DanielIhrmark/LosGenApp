@@ -272,7 +272,8 @@ def main():
 			freqResults = nltk.FreqDist(results)
 			resultsDF = pd.DataFrame(list(freqResults.items()), columns = ["N-gram","Frequency"])
 			resultsDF2 = resultsDF[resultsDF['N-gram'].str.contains(ngramWord)]
-			st.dataframe(resultsDF2.sort_values(by=["Frequency"],ascending=False))
+			resultsDF3 = resultsDF2.sort_values(by=["Frequency"],ascending=False)
+			st.dataframe(resultsDF3.set_index(resultsDF3.columns[0]))
 
 
 if __name__ == '__main__':
