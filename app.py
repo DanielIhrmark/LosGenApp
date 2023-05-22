@@ -262,23 +262,16 @@ def main():
 
 		data = re.sub(r'[^\w\s]','', data.lower())
 
-		if st.button("Get Bigrams"):
+		number = st.number_input("N-gram length", min_value=2)
+
+		ngramWord = st.text_input("Optional: N-grams must include...", "")
+
+		if st.button("Get N-grams"):
 			st.text("Using NLTK N-gram Extractor...")
-			results = ngram_analyzer(data, 2)
+			results = ngram_analyzer(data, number)
 			freqResults = nltk.FreqDist(results)
-			resultsDF = pd.DataFrame(list(freqResults.items()), columns = ["Trigram","Frequency"])
-			st.dataframe(resultsDF.sort_values(by=["Frequency"],ascending=False))
-		if st.button("Get Trigrams"):
-			st.text("Using NLTK N-gram Extractor...")
-			results = ngram_analyzer(data, 3)
-			freqResults = nltk.FreqDist(results)
-			resultsDF = pd.DataFrame(list(freqResults.items()), columns = ["Trigram","Frequency"])
-			st.dataframe(resultsDF.sort_values(by=["Frequency"],ascending=False))
-		if st.button("Get Quadgrams"):
-			st.text("Using NLTK N-gram Extractor...")
-			results = ngram_analyzer(data, 4)
-			freqResults = nltk.FreqDist(results)
-			resultsDF = pd.DataFrame(list(freqResults.items()), columns = ["Trigram","Frequency"])
+			resultsDF = pd.DataFrame(list(freqResults.items()), columns = ["N-gram","Frequency"])
+			resultsDF[resultsDF['N-gram'].str.contains(ngramWord)]
 			st.dataframe(resultsDF.sort_values(by=["Frequency"],ascending=False))
 
 
