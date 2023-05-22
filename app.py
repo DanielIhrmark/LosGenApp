@@ -188,7 +188,7 @@ def main():
 	with st.sidebar:
 		computer = load_lottieurl("https://assets4.lottiefiles.com/packages/lf20_lZfPGMRgUo.json")
 		st_lottie(computer)
-		st.title("LNU LosGen Web")
+		st.title("LNU LosGen Web TEST")
 		st.subheader("Online interface for the Lost Generation corpus")
 		st.subheader("About the App")
 		st.info("This is a basic interface intended to help people easily explore the Lost Generation corpus. Each of the tabs contain an interesting way to explore your selection of texts from the current corpus.")
