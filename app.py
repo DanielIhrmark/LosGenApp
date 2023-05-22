@@ -120,15 +120,16 @@ def load_lottieurl(url: str):
 	return r.json()
 
 
-# Function for frequency list TAB1
+# Function for concordancer TAB1
 @st.cache_data
 def concordancer(corpus, searchTerm):
 	tmp = sys.stdout
 	my_result = StringIO()
 	sys.stdout = my_result
+	searchTermSplit = nltk.word_tokenize(searchTerm)
 	tokenizedText = nltk.word_tokenize(corpus)
 	concText = nltk.Text(tokenizedText)
-	concText.concordance(searchTerm, lines= 50)
+	concText.concordance(searchTermSplit, lines= 50)
 	sys.stdout = tmp
 	return my_result.getvalue()
 
