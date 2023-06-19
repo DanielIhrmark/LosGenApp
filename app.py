@@ -122,7 +122,7 @@ def load_lottieurl(url: str):
 	return r.json()
 
 
-# Function for concordancer TAB1
+# Function for concordancer TAB0
 @st.cache_data
 def concordancer(corpus, searchTerm):
 	tmp = sys.stdout
@@ -136,7 +136,7 @@ def concordancer(corpus, searchTerm):
 	return my_result.getvalue()
 
 
-# Function for frequency lists TAB2
+# Function for frequency lists TAB1
 @st.cache_data
 def get_freqy(my_text):
 	my_text = re.sub(r'[^\w\s]','', my_text.lower())
@@ -168,12 +168,28 @@ def lemmatizer(my_text):
 
 	return lemmaFreqDist
 
-# Keyword extraction done in place TAB3
+# Keyword extraction done in place TAB2
 
-# Function for collocations and N-grams TAB4
+# Function for collocations and N-grams TAB3
 def ngram_analyzer(my_text, num):
 	n_grams = ngrams(nltk.word_tokenize(my_text), num)
 	return [ ' '.join(grams) for grams in n_grams]
+
+# Setting up TAB4
+openai.api_key = st.secrets["api_secret"]
+
+#Setting up AI prompt
+def generate_response(prompt):
+	completions = openai.Completion.create(
+	engine = "text-davinci-003",
+	prompt = prompt,
+	max_tokens = 1024,
+	n = 1,
+	stop = None,
+	temperature=0.5,
+)
+message = completions.choices[0].text
+return message 
 
 
 # pre-load nltk packages
@@ -279,21 +295,6 @@ def main():
 
 	#Chatbot
 	with tab4:
-		openai.api_key = st.secrets["api_secret"]
-
-		#Setting up AI prompt
-		def generate_response(prompt):
-		    completions = openai.Completion.create(
-		        engine = "text-davinci-003",
-		        prompt = prompt,
-		        max_tokens = 1024,
-		        n = 1,
-		        stop = None,
-		        temperature=0.5,
-		    )
-		    message = completions.choices[0].text
-		    return message 
-		
 		# Creating the chatbot interface
 		st.title("LosBot: A LosGen Corpus Helper")
 		st.text("This is a helper chatbot that can answer some questions regarding the novels in the Lost Generation corpus. It is based on OpenAI's Large Language Model DaVinci, and it should not be trusted. However, you can ask it questions about the novels and short stories, and then try to verify the answers using the othe methods available in the interface.")
