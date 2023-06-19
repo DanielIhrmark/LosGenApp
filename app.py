@@ -278,7 +278,9 @@ def main():
 			resultsDF3 = resultsDF2.sort_values(by=["Frequency"],ascending=False)
 			st.dataframe(resultsDF3.set_index(resultsDF3.columns[0]))
 		
-		
+	with tab4:
+		with open("app_bot.py") as f:
+    			exec(f.read())
 
 if __name__ == '__main__':
 	main()
