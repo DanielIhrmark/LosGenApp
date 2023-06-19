@@ -286,7 +286,6 @@ def main():
 		openai.api_key = st.secrets["api_secret"]
 
 		input_container = st.container()
-		colored_header(label='', description='', color_name='blue-30')
 		response_container = st.container()
 
 		#Setting up AI prompt
