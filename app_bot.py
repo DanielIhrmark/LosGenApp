@@ -14,7 +14,7 @@ def generate_response(prompt):
     
 # Creating the chatbot interface
 st.title("LosBot: A LosGen Corpus Helper")
-st.info("This is a helper chatbot that can answer some questions regarding the novels in the Lost Generation corpus. It is based on OpenAI's Large Language Model DaVinci, and it should not be trusted. However, you can ask it questions about the novels and short stories, and then try to verify the answers using the of the methods available in the interface.")
+st.info("This is a helper chatbot that can answer some questions regarding the novels in the Lost Generation corpus. It is based on OpenAI's Large Language Model GPT 3.5 Turbo, and it should not be trusted. However, you can ask it questions about the novels and short stories, and then try to verify the answers using the of the methods available in the interface.")
 
 # Storing the chat
 if 'generated' not in st.session_state:
