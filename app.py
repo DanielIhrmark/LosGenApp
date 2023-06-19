@@ -5,6 +5,8 @@ Public interface for the LNU LosGen
 import sys
 import os
 from io import StringIO
+import openai
+from streamlit_chat import message
 
 import nltk
 import requests
@@ -181,7 +183,7 @@ nltk_download("punkt", "averaged_perceptron_tagger", "universal_tagset", "stopwo
 def main():
 	""" web interface """
 	# Set tabs up
-	tab0, tab1, tab2, tab3 = st.tabs(["Current Content", "Concordancer", "Tokens and Lemma", "N-grams"])
+	tab0, tab1, tab2, tab3, tab4 = st.tabs(["Current Content", "Concordancer", "Tokens and Lemma", "N-grams", "BETA: LosGen Bot"])
 
 
 	# Sidebar
@@ -275,6 +277,47 @@ def main():
 			resultsDF3 = resultsDF2.sort_values(by=["Frequency"],ascending=False)
 			st.dataframe(resultsDF3.set_index(resultsDF3.columns[0]))
 
+	#Chatbot
+	with tab4:
+		openai.api_key = st.secrets["api_secret"]
+
+		#Setting up AI prompt
+		def generate_response(prompt):
+		    completions = openai.Completion.create(
+		        engine = "text-davinci-003",
+		        prompt = prompt,
+		        max_tokens = 1024,
+		        n = 1,
+		        stop = None,
+		        temperature=0.5,
+		    )
+		    message = completions.choices[0].text
+		    return message 
+		
+		# Creating the chatbot interface
+		st.title("LosBot: A LosGen Corpus Helper")
+		st.text("This is a helper chatbot that can answer some questions regarding the novels in the Lost Generation corpus. It is based on OpenAI's Large Language Model DaVinci, and it should not be trusted. However, you can ask it questions about the novels and short stories, and then try to verify the answers using the othe methods available in the interface.")
+		
+		# Storing the chat
+		if 'generated' not in st.session_state:
+		    st.session_state['generated'] = []
+		
+		if 'past' not in st.session_state:
+		    st.session_state['past'] = []
+		
+		# Getting user input
+		def get_text():
+		    input_text = st.text_input("You: ","Hello, how are you?", key="input")
+		    return input_text
+		
+		# Chat history
+		user_input = get_text()
+		
+		if user_input:
+		    output = generate_response(user_input)
+		    # store the output 
+		    st.session_state.past.append(user_input)
+		    st.session_state.generated.append(output)
 
 if __name__ == '__main__':
 	main()
