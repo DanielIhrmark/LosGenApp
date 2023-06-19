@@ -6,17 +6,12 @@ openai.api_key = "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"
 
 #Setting up AI prompt
 def generate_response(prompt):
-    completions = openai.Completion.create(
-        engine = "gpt-3.5-turbo-0613",
-        prompt = prompt,
-        max_tokens = 1024,
-        n = 1,
-        stop = None,
-        temperature=0.5,
-    )
-    message = completions.choices[0].text
-    return message 
+    completion = openai.ChatCompletion.create(model="gpt-3.5-turbo", 
+                                          messages=[{"role": "system", "content": "You are a librarian."},
+                                                    {"role": "user", "content": query}])
 
+    return completion.choices[0].message.content
+    
 # Creating the chatbot interface
 st.title("LosBot: A LosGen Corpus Helper")
 st.info("This is a helper chatbot that can answer some questions regarding the novels in the Lost Generation corpus. It is based on OpenAI's Large Language Model DaVinci, and it should not be trusted. However, you can ask it questions about the novels and short stories, and then try to verify the answers using the of the methods available in the interface.")
