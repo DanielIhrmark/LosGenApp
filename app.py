@@ -285,10 +285,14 @@ def main():
 		st.info("This is a helper chatbot that can answer some questions regarding the novels in the Lost Generation corpus. It is based on OpenAI's Large Language Model DaVinci, and it should not be trusted. However, you can ask it questions about the novels and short stories, and then try to verify the answers using the of the methods available in the interface.")
 		openai.api_key = st.secrets["api_secret"]
 
+		input_container = st.container()
+		colored_header(label='', description='', color_name='blue-30')
+		response_container = st.container()
+
 		#Setting up AI prompt
 		def generate_response(prompt):
 			completions = openai.Completion.create(
-			engine = "text-davinci-003",
+			engine = "gpt-3.5-turbo-0613",
 			prompt = prompt,
 			max_tokens = 1024,
 			n = 1,
@@ -299,11 +303,16 @@ def main():
 			return message 
 
 		# Storing the chat
-		if 'generated' not in st.session_state:
-			st.session_state['generated'] = []
-		
-		if 'past' not in st.session_state:
-			st.session_state['past'] = []
+		with response_container:
+			if user_input:
+				response = generate_response(user_input)
+				st.session_state.past.append(user_input)
+				st.session_state.generated.append(response)
+			
+			if st.session_state['generated']:
+				for i in range(len(st.session_state['generated'])):
+					message(st.session_state['past'][i], is_user=True, key=str(i) + '_user')
+					message(st.session_state['generated'][i], key=str(i))
 		
 		# Getting user input
 		def get_text():
@@ -311,7 +320,8 @@ def main():
 			return input_text
 		
 		# Chat history
-		user_input = get_text()
+		with input_container:
+			user_input = get_text()
 		
 		if user_input:
 		    output = generate_response(user_input)
