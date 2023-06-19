@@ -191,6 +191,17 @@ def generate_response(prompt):
 	message = completions.choices[0].text
 	return message 
 
+# Storing the chat
+if 'generated' not in st.session_state:
+	st.session_state['generated'] = []
+		
+if 'past' not in st.session_state:
+	st.session_state['past'] = []
+		
+# Getting user input
+def get_text():
+	input_text = st.text_input("You: ","Hello, how are you?", key="input")
+	return input_text
 
 # pre-load nltk packages
 nltk_download("punkt", "averaged_perceptron_tagger", "universal_tagset", "stopwords", "wordnet")
@@ -297,19 +308,7 @@ def main():
 	with tab4:
 		# Creating the chatbot interface
 		st.title("LosBot: A LosGen Corpus Helper")
-		st.text("This is a helper chatbot that can answer some questions regarding the novels in the Lost Generation corpus. It is based on OpenAI's Large Language Model DaVinci, and it should not be trusted. However, you can ask it questions about the novels and short stories, and then try to verify the answers using the othe methods available in the interface.")
-		
-		# Storing the chat
-		if 'generated' not in st.session_state:
-		    st.session_state['generated'] = []
-		
-		if 'past' not in st.session_state:
-		    st.session_state['past'] = []
-		
-		# Getting user input
-		def get_text():
-		    input_text = st.text_input("You: ","Hello, how are you?", key="input")
-		    return input_text
+		st.info("This is a helper chatbot that can answer some questions regarding the novels in the Lost Generation corpus. It is based on OpenAI's Large Language Model DaVinci, and it should not be trusted. However, you can ask it questions about the novels and short stories, and then try to verify the answers using the of the methods available in the interface.")
 		
 		# Chat history
 		user_input = get_text()
