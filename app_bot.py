@@ -8,7 +8,7 @@ openai.api_key = "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"
 def generate_response(prompt):
     completion = openai.ChatCompletion.create(model="gpt-3.5-turbo", 
                                           messages=[{"role": "system", "content": "You are a librarian."},
-                                                    {"role": "user", "content": user_input}])
+                                                    {"role": "user", "content": prompt}])
 
     return completion.choices[0].message.content
     
