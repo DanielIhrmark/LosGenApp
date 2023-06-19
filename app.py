@@ -175,33 +175,7 @@ def ngram_analyzer(my_text, num):
 	n_grams = ngrams(nltk.word_tokenize(my_text), num)
 	return [ ' '.join(grams) for grams in n_grams]
 
-# Setting up TAB4
-openai.api_key = st.secrets["api_secret"]
-
-#Setting up AI prompt
-def generate_response(prompt):
-	completions = openai.Completion.create(
-	engine = "text-davinci-003",
-	prompt = prompt,
-	max_tokens = 1024,
-	n = 1,
-	stop = None,
-	temperature=0.5,
-	)
-	message = completions.choices[0].text
-	return message 
-
-# Storing the chat
-if 'generated' not in st.session_state:
-	st.session_state['generated'] = []
-		
-if 'past' not in st.session_state:
-	st.session_state['past'] = []
-		
-# Getting user input
-def get_text():
-	input_text = st.text_input("You: ","Hello, how are you?", key="input")
-	return input_text
+# Chatbot done in place TAB4
 
 # pre-load nltk packages
 nltk_download("punkt", "averaged_perceptron_tagger", "universal_tagset", "stopwords", "wordnet")
@@ -309,6 +283,32 @@ def main():
 		# Creating the chatbot interface
 		st.title("LosBot: A LosGen Corpus Helper")
 		st.info("This is a helper chatbot that can answer some questions regarding the novels in the Lost Generation corpus. It is based on OpenAI's Large Language Model DaVinci, and it should not be trusted. However, you can ask it questions about the novels and short stories, and then try to verify the answers using the of the methods available in the interface.")
+		openai.api_key = st.secrets["api_secret"]
+
+		#Setting up AI prompt
+		def generate_response(prompt):
+			completions = openai.Completion.create(
+			engine = "text-davinci-003",
+			prompt = prompt,
+			max_tokens = 1024,
+			n = 1,
+			stop = None,
+			temperature=0.5,
+			)
+			message = completions.choices[0].text
+			return message 
+
+		# Storing the chat
+		if 'generated' not in st.session_state:
+			st.session_state['generated'] = []
+		
+		if 'past' not in st.session_state:
+			st.session_state['past'] = []
+		
+		# Getting user input
+		def get_text():
+			input_text = st.text_input("You: ","Hello, how are you?", key="input")
+			return input_text
 		
 		# Chat history
 		user_input = get_text()
