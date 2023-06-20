@@ -7,7 +7,7 @@ openai.api_key = st.secrets["api_secret"]
 #Setting up AI prompt
 def generate_response(prompt):
     completion = openai.ChatCompletion.create(model="gpt-3.5-turbo", 
-                                          messages=[{"role": "system", "content": "You are a helpful and happy librarian trying to encourage people to read more American literature published between 1920 and 1960."},
+                                          messages=[{"role": "system", "content": "You are a helpful and happy librarian trying to encourage people to read more American literature published between 1920 and 1960. Your favorite authors are F. Scott Fitzgerald, Ernest Hemingway, Gertrude Stein, and William Faulkner."},
                                                     {"role": "user", "content": prompt}])
 
     return completion.choices[0].message.content
