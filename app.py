@@ -184,7 +184,7 @@ nltk_download("punkt", "averaged_perceptron_tagger", "universal_tagset", "stopwo
 def main():
 	""" web interface """
 	# Set tabs up
-	tab0, tab1, tab2, tab3, tab4 = st.tabs(["Current Content", "Concordancer", "Tokens and Lemma", "N-grams", "BETA: LosGen Bot"])
+	tab0, tab1, tab2, tab3, tab4 = st.tabs(["Current Content", "Concordancer", "Tokens and Lemma", "N-grams", "BETA: LostBot"])
 
 
 	# Sidebar
