@@ -121,13 +121,6 @@ def load_lottieurl(url: str):
 		return None
 	return r.json()
 
-# Function to read PDF user guide
-def show_pdf(file_path):
-    with open(file_path,"rb") as f:
-        base64_pdf = base64.b64encode(f.read()).decode('utf-8')
-    pdf_display = f'<iframe src="data:application/pdf;base64,{base64_pdf}" width="800" height="800" type="application/pdf"></iframe>'
-    st.markdown(pdf_display, unsafe_allow_html=True)
-
 # Function for concordancer TAB0
 @st.cache_data
 def concordancer(corpus, searchTerm):
@@ -190,7 +183,7 @@ nltk_download("punkt", "averaged_perceptron_tagger", "universal_tagset", "stopwo
 def main():
 	""" web interface """
 	# Set tabs up
-	tab0, tab1, tab2, tab3, tab4, tab5 = st.tabs(["Current Content", "Concordancer", "Tokens and Lemma", "N-grams", "BETA: LostBot", "User Guide"])
+	tab0, tab1, tab2, tab3, tab4 = st.tabs(["Current Content", "Concordancer", "Tokens and Lemma", "N-grams", "BETA: LostBot"])
 
 
 	# Sidebar
@@ -287,10 +280,6 @@ def main():
 	with tab4:
 		with open("app_bot.py") as f:
     			exec(f.read())
-
-
-	with tab5:
-		show_pdf('./LNU LostGen Web User Guide.pdf')
 
 if __name__ == '__main__':
 	main()
