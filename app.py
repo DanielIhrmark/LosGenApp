@@ -194,6 +194,12 @@ def main():
 		st.subheader("Online interface for the Lost Generation corpus")
 		st.subheader("About the App")
 		st.info("This is a basic interface intended to help people easily explore the Lost Generation corpus. Each of the tabs contain an interesting way to explore your selection of texts from the current corpus.")
+		with open("dummy.pdf", "rb") as pdf_file:
+			PDFbyte = pdf_file.read()
+		st.download_button(label="Download Guide",
+                    data=PDFbyte,
+                    file_name="LNU LostGen Web User Guide.pdf",
+                    mime='application/octet-stream')
 		st.subheader("Contact and further access to the corpus")
 		st.text("Daniel Ihrmark")
 		st.text("(daniel.o.sundberg@lnu.se)")
