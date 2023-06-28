@@ -284,6 +284,7 @@ def main():
 			st.dataframe(resultsDF3.set_index(resultsDF3.columns[0]))
 		
 	with tab4:
+		@st.cache_resource
 		with open("app_bot.py") as f:
     			exec(f.read())
 
