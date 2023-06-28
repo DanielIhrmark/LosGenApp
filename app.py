@@ -284,8 +284,12 @@ def main():
 			st.dataframe(resultsDF3.set_index(resultsDF3.columns[0]))
 		
 	with tab4:
-		with open("app_bot.py") as f:
-    			exec(f.read())
+		understand = st.checkbox('I understand the limitations of LostBot and that I have to verify any statements made by it')
+
+		if understand:
+			with open("app_bot.py") as f:
+				exec(f.read())
+		
 
 if __name__ == '__main__':
 	main()
