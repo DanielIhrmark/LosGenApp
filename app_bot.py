@@ -5,7 +5,7 @@ from streamlit_chat import message
 openai.api_key = st.secrets["api_secret"]
 
 #Setting up AI prompt
-@st.cache_resource
+@st.cache_data
 def generate_response(prompt):
     completion = openai.ChatCompletion.create(model="gpt-3.5-turbo", 
                                           messages=[{"role": "system", "content": "You are a helpful and happy librarian trying to encourage people to read more American literature published between 1920 and 1960. Your favorite authors are F. Scott Fitzgerald, Ernest Hemingway, Gertrude Stein, and William Faulkner."},
@@ -25,8 +25,12 @@ if 'past' not in st.session_state:
     st.session_state['past'] = []
 
 # Getting user input
+
+input_field = st.text_input("You: ","Hello, how are you?", key="input")
+
+@st.cache_data
 def get_text():
-    input_text = st.text_input("You: ","Hello, how are you?", key="input")
+    input_text = input_field
     return input_text
 
 # Chat history
