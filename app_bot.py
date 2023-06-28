@@ -27,7 +27,7 @@ if 'past' not in st.session_state:
 # Getting user input
 
 def get_text():
-    st.text_input("You: ","Hello, how are you?", key="input")
+    input_text = st.text_input("You: ","Hello, how are you?", key="input")
     return input_text
 
 # Chat history
