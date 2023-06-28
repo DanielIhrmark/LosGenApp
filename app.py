@@ -285,7 +285,7 @@ def main():
 		
 	with tab4:
 		st.title("LostBot: A LosGen Corpus Helper")
-		st.info("This is a helper chatbot that can answer some questions regarding the novels and authors in the Lost Generation corpus. The bot does not have access to the corpus itself, but it can access a lot of outside information regarding authors and their works. It is based on OpenAI's Large Language Model GPT 3.5 Turbo, and it should not be trusted. However, you can ask it questions about the novels and short stories, and then try to verify the answers using the of the methods available in the interface.")
+		st.info("This is a helper chatbot that can answer some questions regarding the novels and authors in the Lost Generation corpus. The bot does not have access to the corpus itself, but it can access a lot of outside information regarding authors and their works. It is based on OpenAI's Large Language Model GPT 3.5 Turbo, and it should not be trusted. However, you can ask it questions about the novels and short stories, and then try to verify the answers using the methods available in the interface.")
 
 		understand = st.checkbox('I understand the limitations of LostBot and that I have to verify any statements made by it')
 
