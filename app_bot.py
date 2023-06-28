@@ -5,7 +5,7 @@ from streamlit_chat import message
 openai.api_key = st.secrets["api_secret"]
 
 #Setting up AI prompt
-@st.cache_data
+@st.cache_resource
 def generate_response(prompt):
     completion = openai.ChatCompletion.create(model="gpt-3.5-turbo", 
                                           messages=[{"role": "system", "content": "You are a helpful and happy librarian trying to encourage people to read more American literature published between 1920 and 1960. Your favorite authors are F. Scott Fitzgerald, Ernest Hemingway, Gertrude Stein, and William Faulkner."},
