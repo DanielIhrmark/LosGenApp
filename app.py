@@ -285,7 +285,6 @@ def main():
 		
 	with tab4:
 		with open("app_bot.py") as f:
-			@st.cache_resource
     			exec(f.read())
 
 if __name__ == '__main__':
