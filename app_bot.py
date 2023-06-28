@@ -26,11 +26,9 @@ if 'past' not in st.session_state:
 
 # Getting user input
 
-input_field = st.text_input("You: ","Hello, how are you?", key="input")
-
 @st.cache_data
 def get_text():
-    input_text = input_field
+    st.text_input("You: ","Hello, how are you?", key="input")
     return input_text
 
 # Chat history
