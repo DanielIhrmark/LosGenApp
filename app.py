@@ -193,7 +193,7 @@ def main():
 		st.title("LNU LosGen Web")
 		st.subheader("Online interface for the Lost Generation corpus")
 		st.subheader("About the App")
-		st.info("This is a basic interface intended to help people easily explore the Lost Generation corpus. Each of the tabs contain an interesting way to explore your selection of texts from the current corpus.")
+		st.info("This is a basic interface intended to help people easily explore the [Lost Generation corpus](https://lnu.se/en/research/research-projects/project-the-lost-generation-corpus/). Each of the tabs contain an interesting way to explore your selection of texts from the current corpus.")
 		with open("LNU LostGen Web User Guide.pdf", "rb") as pdf_file:
 			PDFbyte = pdf_file.read()
 		st.download_button(label="Download Guide",
