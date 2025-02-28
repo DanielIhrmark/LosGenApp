@@ -8,4 +8,4 @@ streamlit==1.18.0
 streamlit-lottie==0.0.3
 streamlit-chat==0.0.2.2
 openai==0.27.8
-altair==4.0’
+altair==4.0
